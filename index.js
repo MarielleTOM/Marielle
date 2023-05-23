@@ -19,7 +19,7 @@ class ProdutoDestaque extends Produto{
     }
 
     Mostrar_produtos_destaque(){
-        return `<div class="img"><img src="${this.imagem}" /> </div>
+        return `<div><img src="${this.imagem}" /> </div>
                 <div> ${this.nome} </div>
                 <div> ${this.cadastro} </div> 
                 <div> ${this.descricao} </div> 
