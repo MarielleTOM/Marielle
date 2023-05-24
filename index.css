@@ -1,4 +1,12 @@
-.img{
-    height: 5%;
-    width: 5%;
+h1 , h2{
+    background-color: rgb(171, 130, 102);
+    font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', sans-serif;
+}
+
+.ladinho{
+    justify-content: flex-start;
+}
+
+.meio{
+    align-items: center;
 }
