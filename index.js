@@ -1,3 +1,10 @@
+class MeuErro extends Error {
+    constructor(message){
+      super(message);
+      this.name = "Meu Erro";
+    }
+  }
+
 class Produto {
     constructor(nome,cadastro, descricao ,preco){
     this.nome = nome;
@@ -6,13 +13,25 @@ class Produto {
     this.preco = preco;
 }
 
+mostrarAtributos(){
+    try {
+      return this.Mostrar_produtos();
+    } catch (error) {
+      return error
+    }
+  } 
+
 Mostrar_produtos(){
+    if (this.nome != "" && this.cadastro != "" && this.descricao != "" && this.preco != ""){
     return `<div class="ladinho">
             <div> ${this.nome} </div>
             <div> ${this.cadastro} </div> 
             <div> Descrição: ${this.descricao} </div> 
             <div> R$ ${this.preco} </div>
             </div> `
+    } else{
+        throw new MeuErro("Esta faltando algum atributo.");
+    }
 }
 
 }
@@ -24,19 +43,25 @@ class ProdutoDestaque extends Produto{
     }
 
     Mostrar_produtos_destaque(){
-        return `
-                <div class="meio"><img style="height: 250px; width: 250px;" src="${this.imagem}" /> </div>
-                <div class="meio"> ${this.nome} </div>
-                <div class="meio"> ${this.cadastro} </div> 
-                <div class="meio"> Descrição: ${this.descricao} </div> 
-                <div class="meio"> R$ ${this.preco} </div> 
-                `
+        if (this.nome != "" && this.cadastro != "" && this.descricao != "" && this.preco != "" && this.imagem != ""){
+            return `
+                    <div class="meio"><img style="height: 250px; width: 250px;" src="${this.imagem}" /> </div>
+                    <div class="meio"> ${this.nome} </div>
+                    <div class="meio"> ${this.cadastro} </div> 
+                    <div class="meio"> Descrição: ${this.descricao} </div> 
+                    <div class="meio"> R$ ${this.preco} </div> 
+                    `
+        } else{
+            throw new MeuErro("Esta faltando algum atributo.");
+        }
 
 }
 
 }
 
-let produto = new Produto("Bolsa", "19/01/2023", "LV, marrom", 1200)
+
+
+let produto = new Produto("", "19/01/2023", "LV, marrom", 1200)
 console.log(produto.Mostrar_produtos())
 
 let produto2 = new Produto("Calça", "13/05/2023", "LV, verde com sibolos da marca em dourado", 500)
@@ -48,7 +73,7 @@ console.log(produto.Mostrar_produtos())
 let produto4 = new Produto("Bolsa de Viagem", "19/02/2023", "LV, marrom escuro e detalhes da marca em bege", 15000)
 console.log(produto.Mostrar_produtos())
  
-let produtodestaque = new ProdutoDestaque("Bolsa", "19/01/2023", "LV, marrom e branca", 1500,"https://br.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bolsa-speedy-bandouli%C3%A8re-25-damier-azur-canvas-bolsas--N40473_PM1_Worn%20view.png?wid=2048&hei=2048")
+let produtodestaque = new ProdutoDestaque("", "19/01/2023", "LV, marrom e branca", 1500,"https://br.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-bolsa-speedy-bandouli%C3%A8re-25-damier-azur-canvas-bolsas--N40473_PM1_Worn%20view.png?wid=2048&hei=2048")
 console.log(produtodestaque.Mostrar_produtos_destaque())
 
 const div = document.getElementById("produto_destaque")
